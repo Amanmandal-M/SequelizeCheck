@@ -19,6 +19,10 @@ const app = express();
 app.use(express.json());
 app.use(CookeiParser());
 
+app.get('/', (req,res)=>{
+    res.send(`<h1 style="text-align:center;color:blue;">Welcome in MySQL Backend</h1>`)
+})
+
 app.use("/auth",UserRouter);
 app.use(Authentication);
 app.use("/orders",OrderRouter);
