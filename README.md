@@ -45,7 +45,7 @@ nodemon index.js
 |    └── UserModel.js
 |    └── OrderModel.js
 ├── routes
-|    └── userRouters.js
+|    └── UserRouters.js
 |    └── OrderRouters.js
 ├──middlewares
 |    └── AuthenticationMiddleware.js
