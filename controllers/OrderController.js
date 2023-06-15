@@ -4,7 +4,8 @@ const { OrderModel } = require("../models/OrderModel")
 
 const OrderDetails = async (req, res) => {
     try {
-        const OrderData = await OrderModel.findAll();
+        const userID = req.body.UserId;
+        const OrderData = await OrderModel.findAll({where : {userID: userID } })
         res.status(200).json(OrderData);
     } catch (error) {
         res.status(400).send({
