@@ -1,13 +1,13 @@
 {
   "name": "sql_4",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is an Order Food Backend application that utilizes a MySQL database. The backend supports CRUD (Create, Read, Update, Delete) operations, allowing users to register, login, order food, and add food items.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Aman Kumar",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",

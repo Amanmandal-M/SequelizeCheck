@@ -1,45 +1,44 @@
 const express = require('express');
-const CookeiParser = require('cookie-parser'); 
 require('dotenv').config();
 
-// -------------->>>> Config Location<<<<--------------
+// Config Location
 const { SeqConnection } = require('./configs/db');
 
-
-// -------------->>>> Routes Location<<<<--------------
+// Routes Location
 const { UserRouter } = require('./routers/UserRouters');
 const { OrderRouter } = require('./routers/OrderRouters');
 
-
-// -------------->>>> Middleware Location<<<<--------------
+// Middleware Location
 const { Authentication } = require('./middlewares/AuthenticationMiddleware');
 
 const app = express();
 
 app.use(express.json());
-app.use(CookeiParser());
 
-app.get('/', (req,res)=>{
-    res.send(`<h1 style="text-align:center;color:blue;">Welcome in MySQL Backend</h1>`)
-})
+// Home route
+app.get('/', (req, res) => {
+  res.send('<h1 style="text-align:center;color:blue;">Welcome to the MySQL Backend</h1>');
+});
 
-app.use("/auth",UserRouter);
+// User routes
+app.use('/auth', UserRouter);
+
+// Authentication middleware
 app.use(Authentication);
-app.use("/orders",OrderRouter);
+
+// Order routes
+app.use('/orders', OrderRouter);
 
 
 
+const PORT = process.env.PORT || 8080;
 
-app.listen(process.env.PORT , async () => {
-    try {
-        SeqConnection;
-        console.log(`Server Listening on PORT: ${process.env.PORT}`);
-    } catch (error) {
-        res.status(400).send(
-            {
-                Message:"Not Working Main Code",
-                Error: error.message        
-            }
-        )
-    }
+app.listen(PORT, async () => {
+  try {
+    await SeqConnection.authenticate();
+    console.log(`Server is listening on PORT: ${PORT}`);
+  } catch (error) {
+    console.error('Failed to connect to the database:', error);
+    process.exit(1);
+  }
 });

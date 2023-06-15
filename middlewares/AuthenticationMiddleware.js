@@ -1,28 +1,30 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+// Middleware for authentication
 const Authentication = (req, res, next) => {
   try {
-    const Normal_Token = req.headers.authorization || "";
+    const NormalToken = req.headers.authorization || "";
 
-    if(Normal_Token){
-      const Decoded =  jwt.verify(Normal_Token, process.env.NORMALKEY);
-      
-      if(Decoded){
-          const UserId = Decoded.UserId;
-          req.body.UserId = UserId;
-          next();
-      }else{
-        res.status(404).send("Please Login Again");
+    if (NormalToken) {
+      // Verify the token
+      const Decoded = jwt.verify(NormalToken, process.env.NORMALKEY);
+
+      if (Decoded) {
+        const UserId = Decoded.UserId;
+        req.body.UserId = UserId;
+        next();
+      } else {
+        res.status(401).send("Please login again");
       }
-    }else{
-        res.status(404).send("You are not Authorized Preson");
+    } else {
+      res.status(401).send("You are not authorized");
     }
   } catch (error) {
-    res.status(400).send({
-        Message : error.message
-    })
+    res.status(500).send({
+      Message: error.message,
+    });
   }
 };
 
-module.exports = {Authentication }
+module.exports = { Authentication };

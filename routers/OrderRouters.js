@@ -1,15 +1,21 @@
 const express = require('express');
-const { OrderDetails , CreateOrder , DeleteOrder } = require('../controllers/OrderController')
+const { OrderDetails, CreateOrder, DeleteOrder, SingleOrderDetails , UpdateOrder} = require('../controllers/OrderController');
 
 const OrderRouter = express.Router();
 
-OrderRouter.get("/" , OrderDetails);
+// Route to get all order details
+OrderRouter.get("/", OrderDetails);
 
-OrderRouter.post("/create" , CreateOrder);
+// Route to get a single order details by ID
+OrderRouter.get("/:id", SingleOrderDetails);
 
-OrderRouter.patch("/update/:id" , DeleteOrder);
+// Route to create a new order
+OrderRouter.post("/create", CreateOrder);
 
-OrderRouter.delete("/delete/:id" , DeleteOrder);
+// Route to update an existing order
+OrderRouter.patch("/update/:id", UpdateOrder);
 
+// Route to delete an existing order
+OrderRouter.delete("/delete/:id", DeleteOrder);
 
 module.exports = { OrderRouter };
