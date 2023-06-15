@@ -1,4 +1,4 @@
-const {DataTypes} =  require ("sequelize")
+const {Sequelize,DataTypes} =  require ("sequelize")
 const { SeqConnection } = require("../configs/db");
 const { UserModel } = require("./UserModel");
 
