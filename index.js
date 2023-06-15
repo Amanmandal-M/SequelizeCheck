@@ -17,7 +17,7 @@ app.use(express.json());
 
 // Home route
 app.get('/', (req, res) => {
-  res.send('<h1 style="text-align:center;color:blue;">Welcome to the MySQL Backend</h1>');
+  res.send('<h1 style="text-align:center;color:blue;">Welcome to the Order Food App Backend</h1>');
 });
 
 // User routes
